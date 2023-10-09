@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html >
+
+<head>
+   
+    <title>Generador de tarjetas de presentacion </title>
+
+    <style>
+            body {
+            font-family: 'Arial', sans-serif;
+            background-color: #333;
+            margin: 0;
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 24px;
+            color: #19a7c0;
+        }
+
+        .tarjeta {
+            background-color: #0f3532;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            width: 40%;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        .tarjeta p {
+            margin: 10px 0;
+            font-size: 14px;
+            font-style: italic;
+            font-family: 'Georgia', serif;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #555;
+            border-radius: 3px;
+            font-size: 14px;
+            background-color: #666;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+            margin-right: 10px;
+            font-weight: bold;
+            color: #fff;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 3px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h1>Generador de Tarjetas de Presentación</h1>
+    <div class="tarjeta" id="tarjeta">
+        <p>Nombre: <span id="nombreMostrado"></span></p>
+        <p>Cargo: <span id="cargoMostrado"></span></p>
+        <p>Empresa: <span id="empresaMostrada"></span></p>
+        <p>Contacto: <span id="contactoMostrado"></span></p>
+    </div>
+
+    <form id="formulario">
+        <label for="nombreInput">Nombre:</label>
+        <input type="text" id="nombreInput" required autofocus><br>
+
+        <label for="cargoInput">Cargo:</label>
+        <input type="text" id="cargoInput" required><br>
+
+        <label for="empresaInput">Empresa:</label>
+        <input type="text" id="empresaInput" required><br>
+
+        <label for="contactoInput">Contacto:</label>
+        <input type="email" id="contactoInput" required><br>
+
+        <button type="button" onclick="generarTarjeta()">Generar Tarjeta</button>
+    </form>
+
+
+    <script>
+        function generarTarjeta() {
+            const nombreIngresado = document.getElementById('nombreInput').value;
+            const cargoIngresado = document.getElementById('cargoInput').value;
+            const empresaIngresada = document.getElementById('empresaInput').value;
+            const contactoIngresado = document.getElementById('contactoInput').value;
+
+            document.getElementById('nombreMostrado').textContent = nombreIngresado;
+            document.getElementById('cargoMostrado').textContent = cargoIngresado;
+            document.getElementById('empresaMostrada').textContent = empresaIngresada;
+            document.getElementById('contactoMostrado').textContent = contactoIngresado;
+        }
+    </script>
+
+</body>
+</html>

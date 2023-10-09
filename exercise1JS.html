@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestion de Inventario  </title>
+    <style>
+
+body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            margin: 0;
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        .formulario {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            width: 40%;
+            margin: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #555;
+            border-radius: 3px;
+            font-size: 16px;
+            background-color: #444;
+            color: #fff;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 3px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #resultado {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            width: 40%;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    
+</head>
+
+<body>
+    
+    <h1>Sistema de Gestión de Inventario</h1>
+    <div class="formulario" id="agregar-form">
+        <form>
+            <label for="nombre" >Nombre del producto:</label>
+            <input type="text" id="nombre" required autofocus><br>
+
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" required><br>
+
+            <label for="cantidad">Cantidad en stock:</label>
+            <input type="number" id="cantidad" required><br>
+
+            <button type="button" onclick="agregarProducto()">Agregar Producto</button>
+        </form>
+    </div>
+
+    <div class="formulario" id="venta-form">
+        <form>
+            <label for="productoVendido">Producto vendido:</label>
+            <input type="text" id="productoVendido" required><br>
+
+            <label for="cantidadVendida">Cantidad vendida:</label>
+            <input type="number" id="cantidadVendida" required><br>
+
+            <button type="button" onclick="realizarVenta()">Realizar Venta</button>
+        </form>
+    </div>
+    
+    <div id="resultado"></div>
+
+    
+    <script>
+        const inventario = {};
+
+        function agregarProducto() {
+            const nombre = document.getElementById('nombre').value;
+            const precio = parseFloat(document.getElementById('precio').value);
+            const cantidad = parseInt(document.getElementById('cantidad').value);
+            if (!inventario[nombre]) {
+                inventario[nombre] = { precio, cantidad };
+                document.getElementById('resultado').innerHTML = `Producto '${nombre}' agregado al inventario.`;
+            } else {
+                document.getElementById('resultado').innerHTML = `El producto '${nombre}' ya existe en el inventario.`;
+            }
+        }
+
+        function realizarVenta() {
+            const productoVendido = document.getElementById('productoVendido').value;
+            const cantidadVendida = parseInt(document.getElementById('cantidadVendida').value);
+            if (inventario[productoVendido]) {
+                if (inventario[productoVendido].cantidad >= cantidadVendida) {
+                    const totalVenta = cantidadVendida * inventario[productoVendido].precio;
+                    inventario[productoVendido].cantidad -= cantidadVendida;
+                    document.getElementById('resultado').innerHTML = `Venta exitosa. Total de ventas: $${totalVenta}. Stock actual: ${inventario[productoVendido].cantidad} unidades.`;
+                } else {
+                    document.getElementById('resultado').innerHTML = `No hay suficiente stock de '${productoVendido}' para realizar la venta.`;
+                }
+            } else {
+                document.getElementById('resultado').innerHTML = `El producto '${productoVendido}' no existe en el inventario.`;
+            }
+        }
+    </script>
+</body>
+</html>

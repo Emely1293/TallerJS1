@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longitudes de Strings</title>
+
+    <style>
+        body {
+            font-family:'Times New Roman', Times, serif;
+            text-align: center;
+            color: black;
+        }
+
+        .contenedor {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid #eddede;
+            border-radius: 5px;
+            background-color: rgba(219, 82, 60, 0.693);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        
+
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Longitudes de Strings</h1>
+        <p>Ingrese una lista de palabras separadas por comas:</p>
+        <input type="text" id="inputPalabras" placeholder="Ejemplo: casa, perro, gato" autofocus>
+        <button id="calcularLongitudes">Calcular Longitudes</button>
+        <p>Longitudes:</p>
+        <p id="resultadoLongitudes"></p>
+    </div>
+
+    <script>
+        document.getElementById("calcularLongitudes").addEventListener("click", function() {
+            const inputPalabras = document.getElementById("inputPalabras").value;
+            const palabras = inputPalabras.split(",").map(palabra => palabra.trim());
+            const longitudes = obtenerLongitudes(palabras);
+            const resultadoLongitudes = document.getElementById("resultadoLongitudes");
+
+            resultadoLongitudes.textContent = longitudes.join(", ");
+        });
+
+        function obtenerLongitudes(palabras) {
+            return palabras.map(palabra => palabra.length);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayúsculas en la Primera Letra</title>
+    <style>
+
+        body{
+            font-family:'Times New Roman', Times, serif;
+            text-align: center;
+        }
+        .contenedor{
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid #eddede;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background-image: linear-gradient(rgb(186, 111, 213),rgb(224, 237, 125), rgb(214, 214, 214));
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Convertir la Primera Letra en Mayúscula</h1>
+        <p>Ingrese una frase:</p>
+        <input type="text" id="entradaFrase" placeholder="Ejemplo: esta es una frase muy larga" autofocus>
+        <button id="botonConvertir">Convertir</button>
+        <p>Frase convertida:</p>
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        document.getElementById("botonConvertir").addEventListener("click", function() {
+            const entradaFrase = document.getElementById("entradaFrase").value;
+            const fraseModificada = convertirPrimeraLetraMayuscula(entradaFrase);
+            const resultado = document.getElementById("resultado");
+
+            resultado.textContent = fraseModificada;
+        });
+
+        function convertirPrimeraLetraMayuscula(fraseOriginal) {
+            const palabras = fraseOriginal.split(" ");
+            const fraseModificada = palabras.map(palabra => {
+                if (palabra.length > 0) {
+                    return palabra[0].toUpperCase() + palabra.slice(1);
+                } else {
+                    return palabra;
+                }
+            });
+            return fraseModificada.join(" ");
+        }
+    </script>
+</body>
+</html>

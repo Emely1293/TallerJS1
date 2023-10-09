@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Emely Guzmán">
+    <title>Juego de Adivinanza de Palabras</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #3d3a3a;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Arial', sans-serif;
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+            color: aliceblue;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .word-display {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 15px;
+            color: antiquewhite;
+        }
+
+        .guess-input-container {
+            margin-top: 10px;
+            color: #fff;
+        }
+
+        input[type="text"] {
+            width: 60%;
+            padding: 6px;
+            border: 1px solid #27030b;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-size: 13px;
+            border-radius: 3px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .message {
+            font-size: 10px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de Adivinanza de Palabras</h1>
+    
+    <p>Intenta adivinar la palabra secreta:</p>
+    <div class="container">
+        <div class="word-display">_ _ _ _ _</div>
+        
+        <div class="guess-input-container">
+            <label for="guess-input">Ingresa una letra o adivina la palabra:</label>
+            <input type="text" id="guess-input" maxlength="20">
+            <button type="button" onclick="checkGuess()">Adivinar</button>
+        </div>
+
+        <p class="message"></p>
+    </div>
+
+    <script>
+        const wordList = ["manzana", "computadora", "familia", "viaje", "libro"];
+        let randomWord = wordList[Math.floor(Math.random() * wordList.length)];
+        let guessedWord = Array(randomWord.length).fill("_");
+
+        function updateWordDisplay() {
+            const wordDisplay = document.querySelector('.word-display');
+            wordDisplay.textContent = guessedWord.join(" ");
+        }
+
+        function checkGuess() {
+            const guessInput = document.getElementById('guess-input').value.toLowerCase();
+
+            if (guessInput.length === 1) {
+                let letterFound = false;
+
+                for (let i = 0; i < randomWord.length; i++) {
+                    if (randomWord[i] === guessInput) {
+                        guessedWord[i] = guessInput;
+                        letterFound = true;
+                    }
+                }
+
+                if (!letterFound) {
+                    // Queria agregar como un plus , la lógica para restar intentos si el usuario lo deseaba................... pero no tengo una idea clara-solida de como hacerlo 
+                }
+
+                updateWordDisplay();
+
+                if (guessedWord.join("") === randomWord) {
+                    document.querySelector('.message').textContent = "¡Felicidades! Has adivinado la palabra correctamente.";
+                }
+            } else if (guessInput === randomWord) {
+                guessedWord = [...randomWord];
+                updateWordDisplay();
+                document.querySelector('.message').textContent = "¡Felicidades! Has adivinado la palabra correctamente.";
+            } else {
+                document.querySelector('.message').textContent = "Por favor, ingresa una letra o adivina la palabra.";
+            }
+
+            document.getElementById('guess-input').value = "";
+        }
+
+        updateWordDisplay();
+    </script>
+</body>
+</html>

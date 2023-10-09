@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Citas Aleatorias</title>
+
+    <style>
+        body {
+            font-family:'Times New Roman', Times, serif;
+            text-align: center;
+        }
+
+        .contenedor {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid #eddede;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .cita {
+            margin-top: 20px;
+        }
+
+        #texto-cita {
+            font-size: 24px;
+        }
+
+        #autor {
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        #generar-boton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #generar-boton:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Generador de Citas Aleatorias</h1>
+        <div class="cita">
+            <p id="texto-cita"></p>
+            <p id="autor"></p>
+        </div>
+        <button id="generar-boton">Generar Cita</button>
+    </div>
+    <script>
+        const autores = [
+            "Albert Einstein",
+            "Isaac Newton",
+            "Stephen Hawking",
+            "Marie Curie",
+            "Charles Darwin",
+            "Leonardo da Vinci",
+            "Galileo Galilei",
+            "Thomas Edison",
+            "Nikola Tesla",
+            "Ada Lovelace",
+            "Steve Jobs",
+            "Elon Musk",
+            "Mark Twain",
+            "Walt Disney",
+            "Abraham Lincoln"
+        ];
+
+        const citas = [
+            "La imaginación es más importante que el conocimiento.",
+            "Si he visto más lejos, es porque he estado de pie sobre hombros de gigantes.",
+            "La simplicidad es la máxima sofisticación.",
+            "La vida no es fácil, pero tampoco es imposible.",
+            "No puedo cambiar la dirección del viento, pero puedo ajustar mis velas para llegar siempre a mi destino.",
+            "La curiosidad mató al gato, pero satisfizo al científico.",
+            "Eureka.",
+            "El genio es un uno por ciento de inspiración y un noventa y nueve por ciento de transpiración.",
+            "El futuro pertenece a quienes creen en la belleza de sus sueños.",
+            "La programación es una poesía para nuestra mente.",
+            "Tu tiempo es limitado, no lo desperdicies viviendo la vida de otra persona.",
+            "Si algo es lo suficientemente importante, incluso si las probabilidades están en tu contra, deberías hacerlo de todos modos.",
+            "La mejor manera de predecir el futuro es crearlo.",
+            "Todos nuestros sueños pueden hacerse realidad si tenemos el coraje de perseguirlos.",
+            "Si buscas tener un amigo, encuentra a alguien que comparta tus pasiones.",
+            "El éxito no es la clave de la felicidad. La felicidad es la clave del éxito. Si amas lo que haces, tendrás éxito."
+        ];
+
+        const textoCita = document.getElementById("texto-cita");
+        const autor = document.getElementById("autor");
+        const generarBoton = document.getElementById("generar-boton");
+
+        let citaActual = "";
+
+        function generarCitaAleatoria() {
+            let indiceAleatorio;
+            do {
+                indiceAleatorio = Math.floor(Math.random() * citas.length);
+            } while (citas[indiceAleatorio] === citaActual);
+
+            citaActual = citas[indiceAleatorio];
+            const autorAleatorio = autores[indiceAleatorio];
+
+            textoCita.textContent = citaActual;
+            autor.textContent = `- ${autorAleatorio}`;
+        }
+
+        generarBoton.addEventListener("click", generarCitaAleatoria);
+
+        // Generar una cita aleatoria al cargar la página
+        generarCitaAleatoria();
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html >
+<head>
+    
+    <title>Generador de Contratos Legales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .contenedor {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label, input, textarea {
+            display: block;
+            margin: 10px 0;
+            width: 95%;
+            padding: 12px;
+        }
+
+        textarea {
+            width: 97%;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Generador de Contratos Legales</h1>
+        <label for="nombre-cliente">Nombre del Cliente:</label>
+        <input type="text" id="nombre-cliente" placeholder="Ingrese el nombre del cliente" autofocus>
+        
+        <label for="nombre-empresa">Nombre de la Empresa:</label>
+        <input type="text" id="nombre-empresa" placeholder="Ingrese el nombre de la empresa">
+
+        <label for="fecha">Fecha de Inicio:</label>
+        <input type="text" id="fecha" placeholder="Ingrese la fecha de inicio">
+        
+        <label for="terminos">Términos y Condiciones:</label>
+        <textarea id="terminos" placeholder="Ingrese los términos y condiciones del contrato"></textarea>
+        
+        <button id="generar-contrato">Generar Contrato</button>
+
+        <h2>Contrato Legal:</h2>
+        <pre id="contrato"></pre>
+    </div>
+
+    <script>
+        const generarContratoButton = document.getElementById("generar-contrato");
+        const nombreClienteInput = document.getElementById("nombre-cliente");
+        const nombreEmpresaInput = document.getElementById("nombre-empresa");
+        const fechaInput = document.getElementById("fecha");
+        const terminosTextarea = document.getElementById("terminos");
+        const contratoOutput = document.getElementById("contrato");
+
+        generarContratoButton.addEventListener("click", () => {
+            const nombreCliente = nombreClienteInput.value;
+            const nombreEmpresa = nombreEmpresaInput.value;
+            const fechaInicio = fechaInput.value;
+            const terminos = terminosTextarea.value;
+
+            const contrato = `
+            CONTRATO LEGAL
+
+            Entre ${nombreCliente} y ${nombreEmpresa}, en adelante denominada "La Empresa".
+
+            Fecha de Inicio: ${fechaInicio}
+
+            TÉRMINOS Y CONDICIONES:
+
+            ${terminos}
+
+            Firma del Cliente: ________________________________
+            Firma de la Empresa: ______________________________
+            `;
+
+            contratoOutput.textContent = contrato;
+        });
+    </script>
+</body>
+</html>

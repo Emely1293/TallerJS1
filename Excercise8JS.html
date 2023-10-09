@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Números Pares</title>
+    <style>
+
+        body {
+            text-align: center;
+        }
+        .contenedor {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid #eddede;
+            border-radius: 5px;
+            /* background-color: #f8f8f8; */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background-image: linear-gradient(rgb(117, 191, 255),rgb(118, 228, 127));
+        }
+
+        h1 {
+            color: #333;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Obtener Números Pares</h1>
+        <p>Ingrese una lista de números separados por comas:</p>
+        <input type="text" id="inputNumeros" placeholder="Ejemplo: 1, 2, 3, 4, 5">
+        <button id="obtenerPares">Obtener Pares</button>
+        <p>Números pares:</p>
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        document.getElementById("obtenerPares").addEventListener("click", function() {
+            const inputNumeros = document.getElementById("inputNumeros").value;
+            const numeros = inputNumeros.split(",").map(numero => parseInt(numero.trim()));
+            const numerosPares = obtenerNumerosPares(numeros);
+            const resultado = document.getElementById("resultado");
+
+            resultado.textContent = numerosPares.join(", ");
+        });
+
+        function obtenerNumerosPares(numeros) {
+            return numeros.filter(numero => numero % 2 === 0);
+        }
+    </script>
+</body>
+</html>

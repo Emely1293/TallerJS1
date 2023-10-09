@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de grafico</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5d6e0;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Arial', sans-serif;
+            font-size: 28px;
+            color: #0c0c0c;
+        }
+
+        pre {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            width: 60%;
+            margin: 20px auto;
+            text-align: left;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            color: #333;
+            font-size: 16px;
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #ff6b6b;
+            border-radius: 5px;
+            font-size: 18px;
+            background-color: #fff;
+            color: #333;
+        }
+
+        button {
+            background-color: #ff6b6b;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        button:hover {
+            background-color: #ff5252;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <h1>Generador de Gráfico de Barras</h1>
+    
+    <form>
+        <label for="datosIngresados">Ingresa los datos separados por comas:</label>
+        <input type="text" id="datosIngresados" required>
+        <button type="button" onclick="generarGrafico()">Generar Gráfico</button>
+    </form>
+    
+    <pre id="resultadoGrafico">
+        
+              Gráfico de Barras:
+    </pre>
+
+    <script>
+        function generarGrafico() {
+            const datosIngresados = document.getElementById('datosIngresados').value;
+            const datos = datosIngresados.split(',').map(Number);
+
+            const grafico = datos.map((valor, indice) => `${indice + 1}: ${'*'.repeat(valor)}`).join('\n');
+
+            document.getElementById('resultadoGrafico').textContent = `Gráfico de Barras:\n${grafico}`;
+        }
+    </script>
+
+
+</body>
+</html>
